@@ -1,7 +1,9 @@
 security:
     # https://symfony.com/doc/current/security.html#where-do-users-come-from-user-providers
     providers:
-        in_memory: { memory: ~ }
+        our_db_provider:
+            entity:
+                class: App:User
     firewalls:
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
@@ -14,11 +16,28 @@ security:
             # http_basic: true
             # https://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
 
-            # form_login: true
+            form_login:
+                provider: our_db_provider
+                login_path: login
+                check_path: login
             # https://symfony.com/doc/current/security/form_login_setup.html
-
+            # ...
+            logout:
+                path:   /logout
+                target: /
+            remember_me:
+                secret:   '%env(APP_SECRET)%'
+                lifetime: 604800 # 1 week in seconds
+                path:     /
     # Easy way to control access for large sections of your site
     # Note: Only the *first* access control that matches will be used
     access_control:
-        # - { path: ^/admin, roles: ROLE_ADMIN }
-        # - { path: ^/profile, roles: ROLE_USER }
+        - { path: ^/admin/users, roles: ROLE_SUPER_ADMIN }
+        - { path: ^/admin, roles: ROLE_ADMIN }
+        - { path: ^/users, roles: ROLE_USER }
+        - { path: ^/api, roles: ROLE_MASTER }
+    role_hierarchy:
+        ROLE_MASTER:            ROLE_USER
+        ROLE_ADMINISTRATOR:     [ROLE_USER, ROLE_MASTER]
+        ROLE_ADMIN:             [ROLE_USER, ROLE_ADMINISTRATOR]
+        ROLE_SUPER_ADMIN:       [ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
