@@ -2,6 +2,7 @@
 
 namespace App\Controller;
 
+use App\Service\PhoneService;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\Routing\Annotation\Route;
@@ -53,11 +54,12 @@ class UserController extends Controller
         // 2) Обработайте отправку (случится только с POST)
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $user->setRegDate(time());
             // 3) Зашифруйте пароль (вы также можете сделать это через слушатель Doctrine)
             $password = $passwordEncoder->encodePassword($user, $user->getPlainPassword());
             $user->setPassword($password);
-
+            $service = new PhoneService();
+            $phone=$service->phone_format($user->getPhone());
+            $user->setPhone($phone);
             // 4) Сохраните пользователя!
             $em->persist($user);
             $em->flush();

@@ -72,7 +72,7 @@ class User implements  AdvancedUserInterface, \Serializable
     private $reg_date;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=true)
+     * @ORM\Column(type="string", length=20, nullable=true)
      */
     private $phone;
 
