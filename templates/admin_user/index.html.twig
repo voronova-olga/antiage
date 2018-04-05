@@ -1,0 +1,72 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Список пользователей!{% endblock %}
+
+{% block body %}
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="{{ path('admin') }}">Админка</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user') }}">Пользователи</a>
+            </li>
+        </ul>
+    </div>
+    <div class="row">
+        <div class="box col-md-12">
+            <div class="box-inner">
+                <div class="box-header well" data-original-title="">
+                    <h2><i class="glyphicon glyphicon-user"></i> Список пользователей</h2>
+                </div>
+                <div class="box-content">
+                    {#<div class="alert alert-info">For help with such table please check <a href="http://datatables.net/" target="_blank">http://datatables.net/</a></div>#}
+                    <table class="table table-striped table-bordered bootstrap-datatable datatable responsive">
+                        <thead>
+                        <tr>
+                            <th>Email</th>
+                            <th>ФИО</th>
+                            <th>Дата регистрации</th>
+                            <th>Роль</th>
+                            <th>Статус</th>
+                            <th>Действия</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for user in users %}
+                        <tr>
+                            <td>{{ user.email }}</td>
+                            <td>{{ user.username }}</td>
+                            <td class="center">{{ user.getRegDate()|date("Y-m-d H:i") }}</td>
+                            <td class="center">{% for role in user.getRoles() %}{{ role }}{% endfor %}</td>
+                            <td class="center">
+                                {% if user.getIsDelete %}
+                                    <span class="label-default label label-danger">Delete</span>
+                                {% elseif user.getIsActive %}
+                                    <span class="label-success label label-default">Active</span>
+                                {% else %}
+                                    <span class="label-default label">Inactive</span>
+                                {% endif %}
+                            </td>
+                            <td class="center">
+                                <a class="btn btn-success" href="{{ path('admin_user_info', {'id': user.id}) }}">
+                                    <i class="glyphicon glyphicon-zoom-in icon-white"></i>
+                                </a>
+                                <a class="btn btn-info" href="{{ path('admin_user_edit', {'id': user.id}) }}">
+                                    <i class="glyphicon glyphicon-edit icon-white"></i>
+                                </a>
+                                <a class="btn btn-danger" href="{{ path('admin_user_delete', {'id': user.id}) }}">
+                                    <i class="glyphicon glyphicon-trash icon-white"></i>
+                                </a>
+                            </td>
+                        </tr>
+                        {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+        <!--/span-->
+
+    </div>
+{% endblock %}

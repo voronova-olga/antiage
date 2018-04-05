@@ -76,11 +76,22 @@ class User implements  AdvancedUserInterface, \Serializable
      */
     private $phone;
 
+    /**
+     * @ORM\Column(name="is_delete", type="boolean")
+     */
+    private $isDelete;
+
+    /**
+     * @ORM\Column(type="bigint", nullable=false)
+     */
+    private $date_of_payment;
+
     public function __construct()
     {
         $this->reg_date = time();
         $this->role = json_encode(array('ROLE_USER'));
         $this->isActive = true;
+        $this->isDelete = false;
     }
 
     /**
@@ -116,6 +127,9 @@ class User implements  AdvancedUserInterface, \Serializable
      */
     public function isEnabled()
     {
+        if($this->isDelete){
+            return FALSE;
+        }
         return $this->isActive;
     }
 
@@ -342,6 +356,42 @@ class User implements  AdvancedUserInterface, \Serializable
     public function setPhone($phone)
     {
         $this->phone = $phone;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getIsDelete()
+    {
+        return $this->isDelete;
+    }
+
+    /**
+     * @param mixed $isDelete
+     * @return User
+     */
+    public function setIsDelete($isDelete)
+    {
+        $this->isDelete = $isDelete;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getDateOfPayment()
+    {
+        return $this->date_of_payment;
+    }
+
+    /**
+     * @param mixed $date_of_payment
+     * @return User
+     */
+    public function setDateOfPayment($date_of_payment)
+    {
+        $this->date_of_payment = $date_of_payment;
         return $this;
     }
 

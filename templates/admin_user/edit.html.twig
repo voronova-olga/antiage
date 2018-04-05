@@ -1,0 +1,19 @@
+{% extends 'base_admin.html.twig' %}
+
+{% block title %}Список пользователей!{% endblock %}
+
+{% block body %}
+    <div>
+        <ul class="breadcrumb">
+            <li>
+                <a href="{{ path('admin') }}">Админка</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user') }}">Пользователи</a>
+            </li>
+            <li>
+                <a href="{{ path('admin_user_edit', {'id': 1}) }}">Редактирование пользователя</a>
+            </li>
+        </ul>
+    </div>
+{% endblock %}
