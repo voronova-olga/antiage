@@ -1,0 +1,26 @@
+{% macro plural(n, value1, value2, value3, value4) %}
+    {% if n == 0 %}
+        {% if value4|default(0) %}
+            {{ value4 }}
+        {% else %}
+            {{ n }} {{ value1 }}
+        {% endif %}
+    {% elseif 10 < n and n < 20 %}
+        {{ n }} {{ value3 }}
+    {% else %}
+        {% if n < 10 %}
+            {% set n1 = n %}
+        {% elseif n < 100 %}
+            {% set n1 = n/10 %}
+        {% else %}
+            {% set n1 = n/100 %}
+        {% endif %}
+        {% if n1 < 2 %}
+            {{ n }} {{ value1 }}
+        {% elseif n1 < 5 %}
+            {{ n }} {{ value2 }}
+        {% else %}
+            {{ n }} {{ value3 }}
+        {% endif %}
+    {% endif %}
+{% endmacro %}

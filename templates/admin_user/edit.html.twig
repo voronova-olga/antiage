@@ -12,7 +12,7 @@
                 <a href="{{ path('admin_user') }}">Пользователи</a>
             </li>
             <li>
-                <a href="{{ path('admin_user_edit', {'id': 1}) }}">Редактирование пользователя</a>
+                <a href="{{ path('admin_user_edit', {'id': user.id}) }}">Редактирование пользователя ({{ user.email }})</a>
             </li>
         </ul>
     </div>

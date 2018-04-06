@@ -1,4 +1,5 @@
 {% extends 'base_admin.html.twig' %}
+{% import "_macros/macro.html.twig" as macros %}
 
 {% block title %}Главная страница{% endblock %}
 
@@ -15,7 +16,7 @@
     </div>
     <div class=" row">
         <div class="col-md-3 col-sm-3 col-xs-6">
-            <a data-toggle="tooltip" title="{{ countNewUser }} новых пользователей." class="well top-block" href="#">
+            <a data-toggle="tooltip" title="{{ macros.plural(countNewUser, 'новый пользователь','новых пользователя','новых пользователей','Новых пользователей нет') }}" class="well top-block" href="#">
                 <i class="glyphicon glyphicon-user blue"></i>
                 <div>Всего пользователей</div>
                 <div>{{ countAllUser }}</div>

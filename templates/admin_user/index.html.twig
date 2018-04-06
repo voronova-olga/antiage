@@ -43,9 +43,9 @@
                                 {% if user.getIsDelete %}
                                     <span class="label-default label label-danger">Delete</span>
                                 {% elseif user.getIsActive %}
-                                    <span class="label-success label label-default">Active</span>
+                                    <span class="label-success label label-default"><a href="{{ path('admin_user_active', {'id': user.id}) }}">Active</a></span>
                                 {% else %}
-                                    <span class="label-default label">Inactive</span>
+                                    <span class="label-default label"><a href="{{ path('admin_user_active', {'id': user.id}) }}">Inactive</a></span>
                                 {% endif %}
                             </td>
                             <td class="center">
