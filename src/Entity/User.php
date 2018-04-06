@@ -86,12 +86,24 @@ class User implements  AdvancedUserInterface, \Serializable
      */
     private $date_of_payment;
 
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $user_raiting;
+
+    /**
+     * @ORM\Column(type="integer", nullable=false)
+     */
+    private $user_comment_raiting;
+
     public function __construct()
     {
         $this->reg_date = time();
         $this->role = json_encode(array('ROLE_USER'));
         $this->isActive = true;
         $this->isDelete = false;
+        $this->user_raiting = 200;
+        $this->user_comment_raiting = 100;
     }
 
     /**
@@ -392,6 +404,42 @@ class User implements  AdvancedUserInterface, \Serializable
     public function setDateOfPayment($date_of_payment)
     {
         $this->date_of_payment = $date_of_payment;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserRaiting()
+    {
+        return $this->user_raiting-100;
+    }
+
+    /**
+     * @param mixed $user_raiting
+     * @return User
+     */
+    public function setUserRaiting($user_raiting)
+    {
+        $this->user_raiting = $user_raiting+100;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getUserCommentRaiting()
+    {
+        return $this->user_comment_raiting-200;
+    }
+
+    /**
+     * @param mixed $user_comment_raiting
+     * @return User
+     */
+    public function setUserCommentRaiting($user_comment_raiting)
+    {
+        $this->user_comment_raiting = $user_comment_raiting+200;
         return $this;
     }
 

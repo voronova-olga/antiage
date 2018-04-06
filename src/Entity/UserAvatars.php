@@ -18,7 +18,7 @@ class UserAvatars
 
     /**
      * @ORM\ManyToOne(targetEntity="App\Entity\User", inversedBy="id")
-     * @ORM\JoinColumn(name="user_id", nullable=true)
+     * @ORM\JoinColumn(name="user_id")
      */
     private $user;
 
