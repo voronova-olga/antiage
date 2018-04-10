@@ -6,7 +6,13 @@
         <li><a class="ajax-link" href="{{ path('admin_user') }}"><i class="glyphicon glyphicon-user"></i><span> Пользователи</span></a>
         </li>
     {% endif %}
-    <li><a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> UI Features</span></a>
+    <li><a class="ajax-link" href="{{ path('admin_post') }}"><i class="glyphicon glyphicon-list"></i><span> Статьи</span></a>
+    </li>
+    <li><a class="ajax-link" href="{{ path('admin_comment') }}"><i class="glyphicon glyphicon-comment"></i><span> Комментарии</span></a>
+    </li>
+    <li><a class="ajax-link" href="{{ path('admin_video') }}"><i class="glyphicon glyphicon-film"></i><span> Видео</span></a>
+    </li>
+    {#<li><a class="ajax-link" href="ui.html"><i class="glyphicon glyphicon-eye-open"></i><span> UI Features</span></a>
     </li>
     <li><a class="ajax-link" href="form.html"><i
                     class="glyphicon glyphicon-edit"></i><span> Forms</span></a></li>
@@ -36,6 +42,6 @@
     <li><a href="error.html"><i class="glyphicon glyphicon-ban-circle"></i><span> Error Page</span></a>
     </li>
     <li><a href="login.html"><i class="glyphicon glyphicon-lock"></i><span> Login Page</span></a>
-    </li>
+    </li>#}
 </ul>
 {#<label id="for-is-ajax" for="is-ajax"><input id="is-ajax" type="checkbox"> Ajax on menu</label>#}
