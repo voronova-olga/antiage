@@ -5,9 +5,9 @@ namespace App\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * @ORM\Entity(repositoryClass="App\Repository\PostsRepository")
+ * @ORM\Entity(repositoryClass="App\Repository\PagesRepository")
  */
-class Posts
+class Pages
 {
     /**
      * @ORM\Id()
@@ -15,16 +15,6 @@ class Posts
      * @ORM\Column(type="integer")
      */
     private $id;
-
-    /**
-     * @ORM\Column(type="string", length=255, nullable=true)
-     */
-    private $title;
-
-    /**
-     * @ORM\Column(type="text", nullable=true)
-     */
-    private $anons;
 
     /**
      * @ORM\Column(type="string", length=255, nullable=true)
@@ -47,6 +37,16 @@ class Posts
     private $isDelete;
 
     /**
+     * @ORM\Column(type="string", length=255, nullable=true)
+     */
+    private $title;
+
+    /**
+     * @ORM\Column(type="text", nullable=true)
+     */
+    private $anons;
+
+    /**
      * @ORM\Column(type="string", length=36, nullable=true)
      */
     private $image_menu;
@@ -67,42 +67,6 @@ class Posts
     /**
      * @return mixed
      */
-    public function getTitle()
-    {
-        return $this->title;
-    }
-
-    /**
-     * @param mixed $title
-     * @return Posts
-     */
-    public function setTitle($title)
-    {
-        $this->title = $title;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
-    public function getAnons()
-    {
-        return $this->anons;
-    }
-
-    /**
-     * @param mixed $anons
-     * @return Posts
-     */
-    public function setAnons($anons)
-    {
-        $this->anons = $anons;
-        return $this;
-    }
-
-    /**
-     * @return mixed
-     */
     public function getSlug()
     {
         return $this->slug;
@@ -110,7 +74,7 @@ class Posts
 
     /**
      * @param mixed $slug
-     * @return Posts
+     * @return Pages
      */
     public function setSlug($slug)
     {
@@ -128,7 +92,7 @@ class Posts
 
     /**
      * @param mixed $activate_date
-     * @return Posts
+     * @return Pages
      */
     public function setActivateDate($activate_date)
     {
@@ -139,14 +103,14 @@ class Posts
     /**
      * @return mixed
      */
-    public function getIsActive()
+    public function getisActive()
     {
         return $this->isActive;
     }
 
     /**
      * @param mixed $isActive
-     * @return Posts
+     * @return Pages
      */
     public function setIsActive($isActive)
     {
@@ -157,18 +121,54 @@ class Posts
     /**
      * @return mixed
      */
-    public function getIsDelete()
+    public function getisDelete()
     {
         return $this->isDelete;
     }
 
     /**
      * @param mixed $isDelete
-     * @return Posts
+     * @return Pages
      */
     public function setIsDelete($isDelete)
     {
         $this->isDelete = $isDelete;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getTitle()
+    {
+        return $this->title;
+    }
+
+    /**
+     * @param mixed $title
+     * @return Pages
+     */
+    public function setTitle($title)
+    {
+        $this->title = $title;
+        return $this;
+    }
+
+    /**
+     * @return mixed
+     */
+    public function getAnons()
+    {
+        return $this->anons;
+    }
+
+    /**
+     * @param mixed $anons
+     * @return Pages
+     */
+    public function setAnons($anons)
+    {
+        $this->anons = $anons;
         return $this;
     }
 
@@ -182,7 +182,7 @@ class Posts
 
     /**
      * @param mixed $image_menu
-     * @return Posts
+     * @return Pages
      */
     public function setImageMenu($image_menu)
     {
@@ -200,7 +200,7 @@ class Posts
 
     /**
      * @param mixed $image_anons
-     * @return Posts
+     * @return Pages
      */
     public function setImageAnons($image_anons)
     {

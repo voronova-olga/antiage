@@ -23,12 +23,12 @@ class UserAvatars
     private $user;
 
     /**
-     * @ORM\Column(type="string", length=32, nullable=true)
+     * @ORM\Column(type="string", length=36, nullable=true)
      */
     private $image;
 
     /**
-     * @ORM\Column(type="integer", length=32, nullable=true)
+     * @ORM\Column(type="integer", nullable=true)
      */
     private $upload_date;
 
